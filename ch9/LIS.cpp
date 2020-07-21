@@ -25,7 +25,7 @@ int dp(int n) {
 		d[i] = 1;
 		for(int j = i + 1; j < n; ++j) {
 			if(num[i] < num[j]) {
-				if(d[i] <= d[j] + 1) {
+				if(d[i] < d[j] + 1) {
 					d[i] = d[j] + 1;
 					nexts[i] = j;
 				}
