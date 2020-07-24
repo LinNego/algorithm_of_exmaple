@@ -21,18 +21,17 @@ int main() {
 	int n;
 	cin >> n;
 	while(n--) {
-		memset()
 		scanf("%s", str + 1);
 		memset(v, 0, sizeof(v));
 		int len = strlen(str + 1);
-		d[i] = 0;
+		d[0] = 0;
 		for(int i = 1; i <= len; ++i) {
 			d[i] =  i;
 			for(int j = 0; j < i; ++j) {
-				if(s[j + 1][i])
+				if(is_palindromes(j + 1, i))
 				d[i] = min(d[i], d[j] + 1);
 			}
 		}
-		cout << d[len];
+		cout << d[len] << endl;
 	}
 }
