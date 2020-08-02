@@ -37,6 +37,7 @@ struct Dijkstra {
             G[i].clear();
         }
         memset(vis, 0, sizeof(vis));
+        memset(p, -1, sizeof(p));
     }
     void add(const Edge &edge) {
         edges.push_back(edge);
@@ -73,8 +74,23 @@ struct Dijkstra {
                     d[e.v] = d[e.u] + e.w;
                     Node to(e.v, d[e.v]);
                     q.push(to);
+                    p[e.v] = G[u][i];
                 }
             }
+        }
+    }
+
+    /*is true but maybe have some problems*/
+    /*because of undirected graph*/
+    void print() {
+        vector<Edge> road;
+        while(p[t] != -1) {
+            Edge temp = edges[p[t]];
+            road.push_back(temp);
+            t = temp.u;
+        }
+        for(int i = road.size() - 1; i >= 0; --i) {
+            printf("%d %d %d\n", road[i].u, road[i].v, road[i].w);
         }
     }
 };
@@ -93,6 +109,7 @@ int main() {
         dij.st(s, t);
         dij.dijkstra();
         printf("%d\n", dij.d[t] == inf ? -1: dij.d[t]);
+        dij.print();
     }
     return 0;
 }
